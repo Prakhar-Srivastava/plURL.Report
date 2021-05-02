@@ -1,0 +1,10 @@
+{
+  "name": "plURL-Report",
+  "version": "1.0.0",
+  "description": "A command line utility to parse and assimilate the output of plurl-api.314lite.com",
+  "main": "index.js",
+  "repository": "https://github.com/Prakhar-Srivastava/plURL.Report.git",
+  "author": "<18552460+Prakhar-Srivastava@users.noreply.github.com>",
+  "license": "MIT",
+  "private": false
+}
