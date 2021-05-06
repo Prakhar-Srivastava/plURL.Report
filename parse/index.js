@@ -1,5 +1,6 @@
 /** @format */
 
+'use-strict';
 const prelimParser = require('./preliminary');
 const boxParser = require('./sandbox');
 

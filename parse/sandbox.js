@@ -1,5 +1,6 @@
 /** @format */
 
+'use-strict';
 async function parse({ sandbox }) {
 	try {
 		const box = await sandbox;
