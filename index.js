@@ -17,15 +17,21 @@ function read(plURLOutput) {
 	return json;
 }
 
+async function parseFile(json) {
+	const urls = Object.keys(json);
+	return await Promise.all(urls.map((url) => parse(json[url])));
+}
+
 if (args.length) {
 	const reads = args.map(read);
 
-	for (const json of reads)
-		for (const url in json) {
-			parse(json[url])
-				.then((val) => console.log(decodeURIComponent(url), val))
-				.catch((err) => console.error('Exception', err));
-		}
+	for (const json of reads) try {
+		parseFile(json)
+			.then((result) => console.log(JSON.stringify(result)))
+			.catch((exp) => console.error('Exception', exp));
+	} catch (exp) {
+		console.error('Exception', exp);
+	}
 } else {
 	let buffs = [];
 
@@ -33,11 +39,9 @@ if (args.length) {
 		.on('data', (buff) => buffs.push(buff))
 		.on('end', () => {
 			const json = read(buffs);
-
-			for (const url in json) {
-				parse(json[url])
-					.then((val) => console.log(decodeURIComponent(url), val))
-					.catch((err) => console.error('Exception', err));
-			}
+			
+			parseFile(json)
+				.then((result) => console.log(JSON.stringify(result)))
+				.catch((exp) => console.error('Exception', exp));
 		});
 }
