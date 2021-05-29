@@ -75,11 +75,14 @@ const getSandboxResults = (urls) => Promise.all(urls.map(getSandboxResult));
 
 const fullPath = (p) => (isAbsolute(p) ? p : join(process.cwd(), p));
 
+const relativePath = (p) => join(__dirname, p);
+
 module.exports = {
 	deflate,
 	getSandboxResults,
 	getSandboxResult,
 	fullPath,
+	relativePath,
 	parseJSON,
 	purge,
 	prune

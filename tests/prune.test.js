@@ -2,17 +2,9 @@
 
 const { prune } = require('../utils');
 
-const trivials = [
-	{},
-	[],
-	0,
-	-0,
-	'',
-	NaN,
-	false,
-	null,
-	undefined
-].map((trivial_case) => ({ test: trivial_case, expect: undefined }));
+const trivials = [{}, [], 0, -0, '', NaN, false, null, undefined].map(
+	(trivial_case) => ({ test: trivial_case, expect: undefined })
+);
 
 const cases = [
 	...trivials,

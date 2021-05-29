@@ -25,13 +25,14 @@ async function parseFile(json) {
 if (args.length) {
 	const reads = args.map(read);
 
-	for (const json of reads) try {
-		parseFile(json)
-			.then((result) => console.log(JSON.stringify(result)))
-			.catch((exp) => console.error('Exception', exp));
-	} catch (exp) {
-		console.error('Exception', exp);
-	}
+	for (const json of reads)
+		try {
+			parseFile(json)
+				.then((result) => console.log(JSON.stringify(result)))
+				.catch((exp) => console.error('Exception', exp));
+		} catch (exp) {
+			console.error('Exception', exp);
+		}
 } else {
 	let buffs = [];
 
@@ -39,7 +40,7 @@ if (args.length) {
 		.on('data', (buff) => buffs.push(buff))
 		.on('end', () => {
 			const json = read(buffs);
-			
+
 			parseFile(json)
 				.then((result) => console.log(JSON.stringify(result)))
 				.catch((exp) => console.error('Exception', exp));

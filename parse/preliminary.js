@@ -23,7 +23,7 @@ function parse({ preliminary: prelim }) {
 
 	const { x_frame_options, ...header } = recom?.headers_minor ?? {};
 	let threats = {
-		critical: [blacklists],
+		critical: [{ blacklists }],
 		high: [
 			{
 				tls_error: {
@@ -37,7 +37,7 @@ function parse({ preliminary: prelim }) {
 		],
 		medium: [
 			{
-				header: x_frame_options
+				header_issues: x_frame_options
 			}
 		],
 		low: [

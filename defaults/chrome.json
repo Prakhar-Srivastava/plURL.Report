@@ -1,0 +1,537 @@
+{
+	"_download": "Yes",
+	"toString": "() => {\n    return \"sandbox\";\n}",
+	"_object_id": 14,
+	"util_log": "util_log",
+	"Buffer": "function Buffer(arg, encodingOrOffset, length) {\n  showFlaggedDeprecation();\n  // Common case.\n  if (typeof arg === 'number') {\n    if (typeof encodingOrOffset === 'string') {\n      throw new ERR_INVALID_ARG_TYPE('string', 'string', arg);\n    }\n    return Buffer.alloc(arg);\n  }\n  return Buffer.from(arg, encodingOrOffset, length);\n}",
+	"_options": {},
+	"_browser_type": "Chrome",
+	"_proxy_verbose": false,
+	"_sync_request": "function doRequest(method, url, options) {\n  if (!spawnSync) {\n    throw new Error(\n      'Sync-request requires node version 0.12 or later.  If you need to use it with an older version of node\\n' +\n      'you can `npm install sync-request@2.2.0`, which was the last version to support older versions of node.'\n    );\n  }\n  var req = JSON.stringify({\n    method: method,\n    url: url,\n    options: options\n  });\n  var res = spawnSync(process.execPath, [require.resolve('./lib/worker.js')], {input: req});\n  if (res.status !== 0) {\n    throw new Error(res.stderr.toString());\n  }\n  if (res.error) {\n    if (typeof res.error === 'string') res.error = new Error(res.error);\n    throw res.error;\n  }\n  var response = JSON.parse(res.stdout);\n  if (response.success) {\n    return new HttpResponse(response.response.statusCode, response.response.headers, response.response.body, response.response.url);\n  } else {\n    throw new Error(response.error.message || response.error || response);\n  }\n}",
+	"_data": {
+		"eval_calls": []
+	},
+	"_sc": ">>> Silencing catch ",
+	"_script_name": "xyz.js",
+	"_trace": "function _trace(t) {\n    try {\n        throw new Error(t);\n    } catch (err) {\n        util_log(\"Trace Non-\" + _inspect(err));\n    }\n}",
+	"_defineProperty": "_defineProperty",
+	"_truncateOutput": "_truncateOutput",
+	"_defineSingleProperty": "_defineSingleProperty",
+	"_proxy_options": {
+		"dont_fail": true,
+		"verbose": false
+	},
+	"_proxy": "_proxy",
+	"eval": "function eval(s) { /* [native code ] */ return _(s)}",
+	"_Function_calls": {},
+	"_orig_Function": "_orig_Function",
+	"Function": "Function",
+	"_wscript_saved_files": {},
+	"_wscript_urls": [],
+	"_wscript_wmis": [],
+	"_wscript_objects": [],
+	"Date": "function Date() { [native code] }",
+	"print": "function() {\n    a = _truncateOutput(Array.prototype.slice.call(arguments, 0).join(\",\"));\n    util_log(\"print(\" + a + \")\");\n}",
+	"TextStream": "TextStream",
+	"FileSystemObject": "FileSystemObject",
+	"FS": {
+		"C:": {
+			"PROGRAMDATA": {},
+			"PROGRAM FILES": {
+				"COMMON FILES": {}
+			},
+			"PROGRAM FILES (X86)": {
+				"COMMON FILES": {}
+			},
+			"USERS": {
+				"USER": {
+					"APPDATA": {
+						"LOCAL": {
+							"TEMP": {}
+						},
+						"ROAMING": {},
+						"LOCALLOW": {}
+					},
+					"DESKTOP": {}
+				},
+				"DEFAULT": {
+					"APPDATA": {
+						"LOCAL": {
+							"TEMP": {}
+						},
+						"ROAMING": {},
+						"LOCALLOW": {}
+					},
+					"DESKTOP": {}
+				},
+				"PUBLIC": {
+					"APPDATA": {
+						"LOCAL": {
+							"TEMP": {}
+						},
+						"ROAMING": {},
+						"LOCALLOW": {}
+					},
+					"DESKTOP": {}
+				}
+			},
+			"WINDOWS": {
+				"SYSTEM32": {
+					"DRIVERS": {
+						"ETC": {
+							"SERVICES": "FILE CONTENT"
+						}
+					}
+				}
+			}
+		},
+		"writeFile": "function(f, c) {\n        var abs = _pw32.isAbsolute(f);\n        if (!abs)\n            util_log(\"FIXME: FS.writeFile - relative path\");\n        var parts = _pw32.normalize(f).split(_pw32.sep);\n        var t = this;\n        var path = Array.prototype.slice.call(parts, 0, -1);\n        var fname = parts[parts.length - 1];\n        util_log(\"FS.writeFile(\" + f + \", \" + _truncateOutput(c) + \")\");\n        for (let p of path) {\n            if (p === \"\")\n                continue;\n            if (!(p in t))\n                t[p] = {}\n            t = t[p.toUpperCase()];\n        }\n        t[fname.toUpperCase()] = c;\n    }"
+	},
+	"ENV": {
+		"ALLUSERSPROFILE": "C:\\ProgramData",
+		"APPDATA": "C:\\Users\\User\\AppData\\Roaming",
+		"COMMONPROGRAMFILES": "C:\\Program Files\\Common Files",
+		"COMMONPROGRAMFILES(X86)": "C:\\Program Files (x86)\\Common Files",
+		"COMMONPROGRAMW6432": "C:\\Program Files\\Common Files",
+		"COMPUTERNAME": "COMPUTER",
+		"COMSPEC": "C:\\WINDOWS\\system32\\cmd.exe",
+		"CWD": "C:\\Users\\User",
+		"FPS_BROWSER_APP_PROFILE_STRING": "Internet Explorer",
+		"FPS_BROWSER_USER_PROFILE_STRING": "Default",
+		"FP_NO_HOST_CHECK": "NO",
+		"HOMEDRIVE": "C:",
+		"HOMEPATH": "\\Users\\User",
+		"LANG": "EN",
+		"LOCALAPPDATA": "C:\\Users\\User\\AppData\\Local",
+		"LOGONSERVER": "\\\\COMPUTER",
+		"NUMBER_OF_PROCESSORS": "4",
+		"OS": "Windows_NT",
+		"PATH": "C:\\Users\\User\\AppData\\Roaming\\npm;C:\\Program Files\\nodejs\\;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Lenovo\\Fingerprint Manager Pro\\;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files (x86)\\Bitvise SSH Client;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft Emulator Manager\\1.0\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;C:\\Strawberry\\c\\bin;C:\\Strawberry\\perl\\site\\bin;C:\\Strawberry\\perl\\bin;C:\\Program Files\\TortoiseGit\\bin;C:\\Program Files\\dotnet\\;C:\\Tcl\\bin;C:\\Program Files (x86)\\Nmap;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Users\\User\\AppData\\Roaming\\npm;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Lenovo\\Fingerprint Manager Pro\\;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files (x86)\\Bitvise SSH Client;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft Emulator Manager\\1.0\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;C:\\Strawberry\\c\\bin;C:\\Strawberry\\perl\\site\\bin;C:\\Strawberry\\perl\\bin;C:\\Program Files\\TortoiseGit\\bin;C:\\Program Files\\dotnet\\;C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps;",
+		"PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC",
+		"PROCESSOR_ARCHITECTURE": "AMD64",
+		"PROCESSOR_IDENTIFIER": "Intel64 Family 6 Model 61 Stepping 4, GenuineIntel",
+		"PROCESSOR_LEVEL": "6",
+		"PROCESSOR_REVISION": "3d04",
+		"PROGRAMDATA": "C:\\ProgramData",
+		"PROGRAMFILES": "C:\\Program Files",
+		"PROGRAMFILES(X86)": "C:\\Program Files (x86)",
+		"PROGRAMW6432": "C:\\Program Files",
+		"PROMPT": "$P$G",
+		"PSMODULEPATH": "C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\PowerShell\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\PowerShell\\ResourceManager\\AzureResourceManager\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\PowerShell\\ServiceManagement\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\PowerShell\\Storage\\",
+		"PUBLIC": "C:\\Users\\Public",
+		"SESSIONNAME": "Console",
+		"SYSTEMDRIVE": "C:",
+		"SYSTEMROOT": "C:\\WINDOWS",
+		"TEMP": "C:\\Users\\User\\AppData\\Local\\Temp",
+		"TMP": "C:\\Users\\User\\AppData\\Local\\Temp",
+		"USERDOMAIN": "COMPUTER",
+		"USERDOMAIN_ROAMINGPROFILE": "COMPUTER",
+		"USERNAME": "User",
+		"USERPROFILE": "C:\\Users\\User",
+		"WINDIR": "C:\\WINDOWS",
+		"SYSTEMDIRECTORY": "C:\\WINDOWS\\System32"
+	},
+	"FolderObject": "FolderObject",
+	"DriveObject": "DriveObject",
+	"Folder2": "Folder2",
+	"FolderItem": "FolderItem",
+	"FileObject": "FileObject",
+	"ret": {
+		"_name": "console",
+		"time": "function(a) {\n        util_log(this._name + \".time(\" + a + \")\");\n        return;\n    }",
+		"timeend": "function(a) {\n        util_log(this._name + \".timeEnd(\" + a + \")\");\n        return;\n    }",
+		"log": "function(a) {\n        util_log(this._name + \".log(\" + a + \")\");\n        return;\n    }",
+		"assert": "function(a) {\n        util_log(this._name + \".assert(\" + a + \")\");\n        return;\n    }",
+		"clear": "function(a) {\n        util_log(this._name + \".clear\" + a + \")\");\n        return;\n    }",
+		"count": "function(a) {\n        util_log(this._name + \".count(\" + a + \")\");\n        return;\n    }",
+		"dir": "function(a) {\n        util_log(this._name + \".dir(\" + a + \")\");\n        return;\n    }",
+		"dirxml": "function(a) {\n        util_log(this._name + \".dirxml(\" + a + \")\");\n        return;\n    }",
+		"error": "function(a) {\n        util_log(this._name + \".(\" + a + \")\");\n        return;\n    }",
+		"group": "function(a) {\n        util_log(this._name + \".group(\" + a + \")\");\n        return;\n    }",
+		"groupcollapsed": "function(a) {\n        util_log(this._name + \".groupCollapsed(\" + a + \")\");\n        return;\n    }",
+		"groupend": "function(a) {\n        util_log(this._name + \".groupEnd(\" + a + \")\");\n        return;\n    }",
+		"info": "function(a) {\n        util_log(this._name + \".info(\" + a + \")\");\n        return;\n    }",
+		"profile": "function(a) {\n        util_log(this._name + \".profile(\" + a + \")\");\n        return;\n    }",
+		"profileend": "function(a) {\n        util_log(this._name + \".profileEnd(\" + a + \")\");\n        return;\n    }",
+		"table": "function(a) {\n        util_log(this._name + \".table(\" + a + \")\");\n        return;\n    }",
+		"timestamp": "function(a) {\n        util_log(this._name + \".timeStamp(\" + a + \")\");\n        return;\n    }",
+		"trace": "function(a) {\n        util_log(this._name + \".trace(\" + a + \")\");\n        return;\n    }",
+		"warn": "function(a) {\n        util_log(this._name + \".warn(\" + a + \")\");\n        return;\n    }",
+		"toString": "() => { return \"console\" }"
+	},
+	"Collection": "Collection",
+	"lcname": "appversion",
+	"Enumerator": "Enumerator",
+	"WshArguments": "WshArguments",
+	"WScript": "Windows Script Host",
+	"create_object": "create_object",
+	"GetObject": "GetObject",
+	"WSH": {
+		"$ref": "$[\"WScript\"]"
+	},
+	"AutomationObject": "AutomationObject",
+	"MSScriptControl_ScriptControl": "MSScriptControl_ScriptControl",
+	"Scripting_Dictionary": "Scripting_Dictionary",
+	"ActiveXObject": "ActiveXObject",
+	"Shell_Application": "Shell_Application",
+	"Process": "Process",
+	"REG": {
+		"HKLM\\SOFTWARE\\MICROSOFT\\WINDOWS NT\\CURRENTVERSION\\PRODUCTID": "00330-80000-00000-AA676",
+		"HKLM\\SOFTWARE\\MICROSOFT\\WINDOWS NT\\CURRENTVERSION\\SYSTEMROOT": "c:\\WINDOWS",
+		"HKLM\\SOFTWARE\\CLASSES\\MIME\\DATABASE\\RFC1766\\1034": "en-us;@%SystemRoot%system32mlang.dll,-4386",
+		"HKLM\\SOFTWARE\\CLASSES\\MIME\\DATABASE\\RFC1766\\0409": "en-us;@%SystemRoot%system32mlang.dll,-4386",
+		"HKCR\\HTTP\\SHELL\\OPEN\\COMMAND\\": "\"C:\\Chrome\\chrome.exe\" -url \"%1\"",
+		"eee": ""
+	},
+	"WScript_Shell": "WScript_Shell",
+	"Shell": "WScript_Shell",
+	"WScript_Network": "WScript_Network",
+	"VBScript_RegExp": "VBScript_RegExp",
+	"WshEnvironment": "WshEnvironment",
+	"WshShortcut": "WshShortcut",
+	"ADODB_Stream": "function() {\n    this.id = _object_id++;\n    this._name = \"ADODB_Stream[\" + this.id + \"]\";\n    util_log(\"new \" + this._name);\n\n    //_trace(\"ADOBE\");\n\n    this.open = function() {\n        util_log(this._name + \".Open()\");\n    }\n    this._type = 2;\n    this._position = 0;\n    this._size = 0;\n    this._content = '';\n    this._charset = undefined;\n    this.tostring = this.toString = () => {\n        return this._name /*JSON.stringify(this)*/\n    }\n\n    this.write = function(a) {\n        this.content = a;\n        if (typeof a === 'undefined')\n            util_log(this._name + \".Write(undefined) - Error ?\");\n        else {\n            util_log(this._name + \".Write(str) - \" + a.length + \" bytes\");\n            this.size = a.length\n        }\n    }\n    this.writetext = function(a) {\n        var encoding = 'binary'\n        if (typeof a === 'undefined')\n            util_log(this._name + \".WriteText(undefined) - Error ?\");\n        else {\n            if (this.type == 2 && typeof this.charset !== 'undefined') {\n                this.content = _iconv.encode(a, this.charset);\n                encoding = this.charset;\n            } else {\n                this.content = a;\n            }\n            util_log(this._name + \".WriteText(str) - \" + a.length + \" bytes, encoding: \" + encoding);\n            this.size = this.content.length\n        }\n    }\n    this.savetofile = function(a, b) {\n        util_log(this._name + \".SaveToFile(\" + a + \", \" + b + \")\");\n        _wscript_saved_files[a] = this.content;\n    }\n    this.saveToFile = this.savetofile;\n\n    this.loadfromfile = function(a) {\n            var encoding = 'binary';\n            //util_log(this._name + \".LoadFromFile(\" + a + \")\");\n            if (this.type == 2 && typeof this.charset !== 'undefined') {\n                //util_log(\"here\");\n                this.content = _iconv.decode(Buffer.from(_wscript_saved_files[a]), this.charset);\n                encoding = this.charset;\n            } else {\n                this.content = _wscript_saved_files[a];\n            }\n            util_log(this._name + \".LoadFromFile(\" + a + \") \" + this.content.length + \" bytes, encoding: \" + encoding);\n            this.Position = 0;\n        }\n        // adReadAll -1 Default. Reads all bytes from the stream, from the current position onwards to the EOS marker.\n        // This is the only valid StreamReadEnum value with binary streams (Type is adTypeBinary).\n        // adReadLine -2 Reads the next line from the stream (designated by the LineSeparator property).\n    this.readtext = function(a) {\n        util_log(this._name + \".ReadText(\" + a + \")\");\n        if (typeof a === \"undefined\" || a == adReadAll) {\n            return this.content;\n        } else if (a == adReadLine) {\n            throw new Error(\"FIXME: \" + this._name + \".ReadText(\" + a + \") not implemented.\");\n        } else if (a > 0) {\n            return this.content.slice(this.Position, this.Position + a);\n        } else {\n            return this.content;\n        }\n    }\n    this.read = function(a) {\n        util_log(this._name + \".Read(\" + a + \")\");\n        if (typeof a === \"undefined\" || a == adReadAll) {\n            return this.content;\n        } else if (a == adReadLine) {\n            throw new Error(\"FIXME: \" + this._name + \".Read(\" + a + \") not implemented.\");\n        } else if (a > 0) {\n            return this.content.slice(this.Position, this.Position + a);\n        } else {\n            return this.content;\n        }\n    }\n    this.close = function() {\n        util_log(this._name + \".Close()\");\n    }\n    this.copyto = function(t) {\n        util_log(this._name + \".CopyTo(\" + t + \")\");\n        t._type = this._type;\n        t._position = this._position;\n        t._size = this._size;\n        t._content = this._content;\n        t._charset = this._charset;\n    }\n    _defineSingleProperty(this, \"charset\", \"_charset\");\n    //_defineSingleProperty(this, \"readtext\", \"_content\");\n    //_defineSingleProperty(this, \"read\", \"_content\");\n    _defineSingleProperty(this, \"content\", \"_content\");\n    // adTypeBinary 1 Indicates binary data.\n    // adTypeText 2 Default. Indicates text data, which is in the character set specified by Charset.\n    _defineSingleProperty(this, \"type\", \"_type\");\n    _defineSingleProperty(this, \"position\", \"_position\");\n    _defineSingleProperty(this, \"size\", \"_size\");\n}",
+	"ADODB_Recordset": "ADODB_Recordset",
+	"ADODB_Fields": "function(father) {\n    this.id = _object_id++;\n    this._name = \"ADODB_Fields[\" + this.id + \"]\";\n    this._father = father;\n    util_log(\"new \" + this._name);\n    this.toString = this.tostring = () => {\n        return this._name\n    }\n    _defineSingleProperty(this, \"item\");\n    _defineSingleProperty(this, \"count\");\n    this._items = [];\n    this._count = 0;\n    this._item = function(i) {\n        return this._items[i];\n    }\n    this.resync = function() {\n        let a = _truncateOutput(Array.prototype.slice.call(arguments, 0).join(\",\"));\n        util_log(this._name + \".Resync(\" + a + \")\");\n    }\n    this.append = function() {\n        let fds = Array.prototype.slice.call(arguments, 0);\n        let a = _truncateOutput(fds.join(\",\"));\n        util_log(this._name + \".Append(\" + a + \")\");\n        var newfield = _proxy(new ADODB_Field(this))\n        if (fds.length > 0) {\n            _defineSingleProperty(this._father, fds[0]);\n            newfield.name = fds[0]\n        }\n        if (fds.length > 1)\n            newfield.type = fds[1]\n        if (fds.length > 2)\n            newfield.definedsize = fds[2]\n        this._father[fds[0]] = newfield;\n        this._items[this._items.length] = newfield;\n    }\n    this.toString = function() {\n        return this._name;\n    }\n}",
+	"ADODB_Field": "function(father) {\n    this.id = _object_id++;\n    this._name = \"ADODB_Field[\" + this.id + \"]\";\n    this._father = father;\n    util_log(\"new \" + this._name);\n    this.toString = this.tostring = () => {\n        return this._name\n    }\n    _defineSingleProperty(this, \"name\", \"_fieldname\");\n    _defineSingleProperty(this, \"value\");\n    _defineSingleProperty(this, \"definedsize\");\n    this._value = \"\";\n    this.appendchunk = function() {\n        let fds = Array.prototype.slice.call(arguments, 0);\n        let a = _truncateOutput(fds.join(\",\"));\n        util_log(this._name + \".AppendChunk(\" + a + \")\");\n        this._value = fds[0]\n    }\n    this.toString = function() {\n        return this._name;\n    }\n}",
+	"Msxml2_DOMDocument_6_0": "Msxml2_DOMDocument_6_0",
+	"MSXML2_XMLHTTP": "MSXML2_XMLHTTP",
+	"Style": "Style",
+	"Node": "Node",
+	"Element": "Element",
+	"HTMLElement": "HTMLElement",
+	"HTMLIFrameElement": "HTMLIFrameElement",
+	"_browser_documents": [],
+	"location": {
+		"_name": "location",
+		"_props": {
+			"href": "http://example.com/?search",
+			"hostname": "example.com",
+			"search": "?search",
+			"host": "example.com"
+		},
+		"replace": "function(n) {\n        util_log(this._name + \".replace(\" + n + \")\");\n        this._props[\"href\"] = n;\n    }",
+		"toString": "() => { return \"location\" }"
+	},
+	"k": "vendor",
+	"screen": {
+		"availHeight": 1080,
+		"availLeft": 78,
+		"availTop": 0,
+		"availWidth": 1842,
+		"colorDepth": 24,
+		"height": 1080,
+		"orientation": {
+			"angle": 0,
+			"onchange": null,
+			"type": "landscape-primary"
+		},
+		"pixelDepth": 24,
+		"width": 1920,
+		"toString": "() => { return \"screen\" }"
+	},
+	"_setInterval_calls": [],
+	"_setTimeout_calls": [],
+	"window": {
+		"id": 5,
+		"_name": "window[5]",
+		"eval": "function eval(s) { /* [native code ] */ return _(s)}",
+		"settimeout": "function() {\n        util_log(this._name + \".setTimeout(\" + Array.prototype.slice.call(arguments, 0).join(\",\") + \")\");\n        _setTimeout_calls[_setTimeout_calls.length] = arguments[0].toString();\n        //util_log(typeof arguments[0]);\n        return _setTimeout.apply(this, Array.prototype.slice.call(arguments, 0));\n    }",
+		"cleartimeout": "function() {\n        util_log(this._name + \".clearTimeout(\" + Array.prototype.slice.call(arguments, 0).join(\",\") + \")\");\n        _clearTimeout.apply(this, Array.prototype.slice.call(arguments, 0));\n    }",
+		"scrollby": "function(x, y) {\n        util_log(this._name + \".scrollBy(\" + Array.prototype.slice.call(arguments, 0).join(\",\") + \")\");\n    }",
+		"setinterval": "function() {\n        util_log(this._name + \".setInterval(\" + Array.prototype.slice.call(arguments, 0).join(\",\") + \")\");\n        _setInterval_calls[_setInterval_calls.length] = arguments[0].toString();\n        //util_log(typeof arguments[0]);\n        return _setInterval.apply(this, Array.prototype.slice.call(arguments, 0));\n    }",
+		"clearinterval": "function() {\n        util_log(this._name + \".clearInterval(\" + Array.prototype.slice.call(arguments, 0).join(\",\") + \")\");\n        _clearInterval.apply(this, Array.prototype.slice.call(arguments, 0));\n    }",
+		"settimeoutsync": "function() {\n        util_log(this._name + \".setTimeout(\" + Array.prototype.slice.call(arguments, 0).join(\",\") + \")\");\n        _setTimeout_calls[_setTimeout_calls.length] = arguments[0].toString();\n        //util_log(typeof arguments[0]);\n        return arguments[0].apply(this, Array.prototype.slice.call(arguments, 1));\n    }",
+		"setintervalsync": "function() {\n        util_log(this._name + \".setInterval(\" + Array.prototype.slice.call(arguments, 0).join(\",\") + \")\");\n        _setInterval_calls[_setInterval_calls.length] = arguments[0].toString();\n        //util_log(typeof arguments[0]);\n        return arguments[0].apply(this, Array.prototype.slice.call(arguments, 1));\n    }",
+		"clearintervalsync": "function() {\n        util_log(this._name + \".clearInterval(\" + Array.prototype.slice.call(arguments, 0).join(\",\") + \")\");\n    }",
+		"navigator": {
+			"id": 5,
+			"_name": "window[5]",
+			"eval": "function eval(s) { /* [native code ] */ return _(s)}",
+			"settimeout": "function() {\n        util_log(this._name + \".setTimeout(\" + Array.prototype.slice.call(arguments, 0).join(\",\") + \")\");\n        _setTimeout_calls[_setTimeout_calls.length] = arguments[0].toString();\n        //util_log(typeof arguments[0]);\n        return _setTimeout.apply(this, Array.prototype.slice.call(arguments, 0));\n    }",
+			"cleartimeout": "function() {\n        util_log(this._name + \".clearTimeout(\" + Array.prototype.slice.call(arguments, 0).join(\",\") + \")\");\n        _clearTimeout.apply(this, Array.prototype.slice.call(arguments, 0));\n    }",
+			"scrollby": "function(x, y) {\n        util_log(this._name + \".scrollBy(\" + Array.prototype.slice.call(arguments, 0).join(\",\") + \")\");\n    }",
+			"setinterval": "function() {\n        util_log(this._name + \".setInterval(\" + Array.prototype.slice.call(arguments, 0).join(\",\") + \")\");\n        _setInterval_calls[_setInterval_calls.length] = arguments[0].toString();\n        //util_log(typeof arguments[0]);\n        return _setInterval.apply(this, Array.prototype.slice.call(arguments, 0));\n    }",
+			"clearinterval": "function() {\n        util_log(this._name + \".clearInterval(\" + Array.prototype.slice.call(arguments, 0).join(\",\") + \")\");\n        _clearInterval.apply(this, Array.prototype.slice.call(arguments, 0));\n    }",
+			"settimeoutsync": "function() {\n        util_log(this._name + \".setTimeout(\" + Array.prototype.slice.call(arguments, 0).join(\",\") + \")\");\n        _setTimeout_calls[_setTimeout_calls.length] = arguments[0].toString();\n        //util_log(typeof arguments[0]);\n        return arguments[0].apply(this, Array.prototype.slice.call(arguments, 1));\n    }",
+			"setintervalsync": "function() {\n        util_log(this._name + \".setInterval(\" + Array.prototype.slice.call(arguments, 0).join(\",\") + \")\");\n        _setInterval_calls[_setInterval_calls.length] = arguments[0].toString();\n        //util_log(typeof arguments[0]);\n        return arguments[0].apply(this, Array.prototype.slice.call(arguments, 1));\n    }",
+			"clearintervalsync": "function() {\n        util_log(this._name + \".clearInterval(\" + Array.prototype.slice.call(arguments, 0).join(\",\") + \")\");\n    }",
+			"navigator": {
+				"$ref": "$[\"window\"][\"navigator\"]"
+			},
+			"_location": {
+				"$ref": "$[\"location\"]"
+			},
+			"toString": "() => { return \"window\" }",
+			"Array": "function Array() { [native code] }",
+			"Boolean": "function Boolean() { [native code] }",
+			"Date": "function Date() { [native code] }",
+			"Error": "function Error() { [native code] }",
+			"Math": {},
+			"Number": "function Number() { [native code] }",
+			"Object": "function Object() { [native code] }",
+			"RegExp": "function RegExp() { [native code] }",
+			"String": "function String() { [native code] }",
+			"Node": "Node",
+			"JSON": {
+				"decycle": "function decycle(object) {\n        'use strict';\n        \n        // Make a deep copy of an object or array, assuring that there is at most\n        // one instance of each object or array in the resulting structure. The\n        // duplicate references (which might be forming cycles) are replaced with\n        // an object of the form\n        //      {$ref: PATH}\n        // where the PATH is a JSONPath string that locates the first occurance.\n        // So,\n        //      var a = [];\n        //      a[0] = a;\n        //      return JSON.stringify(JSON.decycle(a));\n        // produces the string '[{\"$ref\":\"$\"}]'.\n        \n        // JSONPath is used to locate the unique object. $ indicates the top level of\n        // the object or array. [NUMBER] or [STRING] indicates a child member or\n        // property.\n        \n        var objects = [],   // Keep a reference to each unique object or array\n            paths = [];     // Keep the path to each unique object or array\n        \n        return (function derez(value, path) {\n            \n            // The derez recurses through the object, producing the deep copy.\n            \n            var i,          // The loop counter\n                name,       // Property name\n                nu;         // The new object or array\n            \n            // typeof null === 'object', so go on if this value is really an object but not\n            // one of the weird builtin objects.\n            \n            if (typeof value === 'object' && value !== null &&\n                    !(value instanceof Boolean) &&\n                    !(value instanceof Date) &&\n                    !(value instanceof Number) &&\n                    !(value instanceof RegExp) &&\n                    !(value instanceof String)) {\n                \n                // If the value is an object or array, look to see if we have already\n                // encountered it. If so, return a $ref/path object. This is a hard way,\n                // linear search that will get slower as the number of unique objects grows.\n                \n                for (i = 0; i < objects.length; i += 1) {\n                    if (objects[i] === value) {\n                        return { $ref: paths[i] };\n                    }\n                }\n                \n                // Otherwise, accumulate the unique value and its path.\n                \n                objects.push(value);\n                paths.push(path);\n                \n                // If it is an array, replicate the array.\n                \n                if (Object.prototype.toString.apply(value) === '[object Array]') {\n                    nu = [];\n                    for (i = 0; i < value.length; i += 1) {\n                        nu[i] = derez(value[i], path + '[' + i + ']');\n                    }\n                } else {\n                    \n                    // If it is an object, replicate the object.\n                    \n                    nu = {};\n                    for (name in value) {\n                        if (Object.prototype.hasOwnProperty.call(value, name)) {\n                            nu[name] = derez(value[name],\n                                    path + '[' + JSON.stringify(name) + ']');\n                        }\n                    }\n                }\n                return nu;\n            }\n            return value;\n        }(object, '$'));\n    }",
+				"retrocycle": "function retrocycle($) {\n        'use strict';\n        \n        // Restore an object that was reduced by decycle. Members whose values are\n        // objects of the form\n        //      {$ref: PATH}\n        // are replaced with references to the value found by the PATH. This will\n        // restore cycles. The object will be mutated.\n        \n        // The eval function is used to locate the values described by a PATH. The\n        // root object is kept in a $ variable. A regular expression is used to\n        // assure that the PATH is extremely well formed. The regexp contains nested\n        // * quantifiers. That has been known to have extremely bad performance\n        // problems on some browsers for very long strings. A PATH is expected to be\n        // reasonably short. A PATH is allowed to belong to a very restricted subset of\n        // Goessner's JSONPath.\n        \n        // So,\n        //      var s = '[{\"$ref\":\"$\"}]';\n        //      return JSON.retrocycle(JSON.parse(s));\n        // produces an array containing a single element which is the array itself.\n        \n        var px = /^\\$(?:\\[(?:\\d+|\\\"(?:[^\\\\\\\"\\u0000-\\u001f]|\\\\([\\\\\\\"\\/bfnrt]|u[0-9a-zA-Z]{4}))*\\\")\\])*$/;\n        \n        (function rez(value) {\n            \n            // The rez function walks recursively through the object looking for $ref\n            // properties. When it finds one that has a value that is a path, then it\n            // replaces the $ref object with a reference to the value that is found by\n            // the path.\n            \n            var i, item, name, path;\n            \n            if (value && typeof value === 'object') {\n                if (Object.prototype.toString.apply(value) === '[object Array]') {\n                    for (i = 0; i < value.length; i += 1) {\n                        item = value[i];\n                        if (item && typeof item === 'object') {\n                            path = item.$ref;\n                            if (typeof path === 'string' && px.test(path)) {\n                                value[i] = eval(path);\n                            } else {\n                                rez(item);\n                            }\n                        }\n                    }\n                } else {\n                    for (name in value) {\n                        if (typeof value[name] === 'object') {\n                            item = value[name];\n                            if (item) {\n                                path = item.$ref;\n                                if (typeof path === 'string' && px.test(path)) {\n                                    value[name] = eval(path);\n                                } else {\n                                    rez(item);\n                                }\n                            }\n                        }\n                    }\n                }\n            }\n        }($));\n        return $;\n    }"
+			},
+			"Function": "function Function() { [native code] }",
+			"Element": "Element",
+			"HTMLElement": "HTMLElement",
+			"_props": {
+				"_browser_type": "Chrome on Win10 64bit",
+				"userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36",
+				"chrome": {
+					"app": {},
+					"csi": "function() {}",
+					"loadTimes": "function() {}",
+					"runtime": {},
+					"webstore": {}
+				},
+				"vendor": "Google Inc."
+			},
+			"appVersion": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36"
+		},
+		"_location": {
+			"$ref": "$[\"location\"]"
+		},
+		"toString": "() => { return \"window\" }",
+		"Array": "function Array() { [native code] }",
+		"Boolean": "function Boolean() { [native code] }",
+		"Date": "function Date() { [native code] }",
+		"Error": "function Error() { [native code] }",
+		"Math": {
+			"$ref": "$[\"window\"][\"navigator\"][\"Math\"]"
+		},
+		"Number": "function Number() { [native code] }",
+		"Object": "function Object() { [native code] }",
+		"RegExp": "function RegExp() { [native code] }",
+		"String": "function String() { [native code] }",
+		"Node": "Node",
+		"JSON": {
+			"$ref": "$[\"window\"][\"navigator\"][\"JSON\"]"
+		},
+		"Function": "function Function() { [native code] }",
+		"Element": "Element",
+		"HTMLElement": "HTMLElement",
+		"_props": {
+			"$ref": "$[\"window\"][\"navigator\"][\"_props\"]"
+		},
+		"appVersion": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36"
+	},
+	"setTimeout": "function () { [native code] }",
+	"setInterval": "function () { [native code] }",
+	"clearInterval": "function () { [native code] }",
+	"clearTimeout": "function () { [native code] }",
+	"navigator": {
+		"$ref": "$[\"window\"]"
+	},
+	"Document": "Document",
+	"document": {
+		"id": 6,
+		"_name": "document[6]",
+		"_content": "",
+		"_elements": [
+			{
+				"_id": 7,
+				"_name": "Element[7]<html>",
+				"_innerHTML": "",
+				"_outerHTML": "",
+				"_text": "",
+				"_children": [
+					{
+						"_id": 11,
+						"_name": "Element[11]<head>",
+						"_innerHTML": "",
+						"_outerHTML": "",
+						"_text": "",
+						"_children": [],
+						"_attributes": [],
+						"_class": "",
+						"__vgRuntimeStyle": "",
+						"_nodename": "head",
+						"toString": "function() {\n        return this._name;\n    }",
+						"appendchild": "function(e) {\n        util_log(this._name + \".appendChild(\" + e._name + \")\");\n        if (this._children.length == 0) {\n            this.firstChild = e;\n        }\n        this._children[this._children.length] = e;\n        e.parentNode = this;\n        e.parentelement = this;\n        return e;\n    }",
+						"removechild": "function(e) {\n        util_log(this._name + \".removeChild(\" + e._name + \") - dummy\");\n        return e;\n    }",
+						"setattribute": "function(n, v) {\n        util_log(this._name + \".setAttribute(\" + n + \", \" + v + \")\");\n        this._attributes[n] = v;\n    }",
+						"_firstchild": "",
+						"_parentelement": {
+							"$ref": "$[\"document\"][\"_elements\"][0]"
+						},
+						"_parentnode": {
+							"$ref": "$[\"document\"][\"_elements\"][0]"
+						},
+						"_style": {
+							"_id": 12,
+							"_name": "Style[12]",
+							"_attributes": {
+								"visibility": true,
+								"left": 0,
+								"top": 0,
+								"position": "",
+								"stylesheet": {
+									"cssText": ""
+								}
+							},
+							"tostring": "() => {\n        return this._name;\n    }",
+							"toString": "() => {\n        return this._name;\n    }"
+						}
+					},
+					{
+						"_id": 9,
+						"_name": "Element[9]<body>",
+						"_innerHTML": "",
+						"_outerHTML": "",
+						"_text": "",
+						"_children": [],
+						"_attributes": [],
+						"_class": "",
+						"__vgRuntimeStyle": "",
+						"_nodename": "body",
+						"toString": "function() {\n        return this._name;\n    }",
+						"appendchild": "function(e) {\n        util_log(this._name + \".appendChild(\" + e._name + \")\");\n        if (this._children.length == 0) {\n            this.firstChild = e;\n        }\n        this._children[this._children.length] = e;\n        e.parentNode = this;\n        e.parentelement = this;\n        return e;\n    }",
+						"removechild": "function(e) {\n        util_log(this._name + \".removeChild(\" + e._name + \") - dummy\");\n        return e;\n    }",
+						"setattribute": "function(n, v) {\n        util_log(this._name + \".setAttribute(\" + n + \", \" + v + \")\");\n        this._attributes[n] = v;\n    }",
+						"_firstchild": "",
+						"_parentelement": {
+							"$ref": "$[\"document\"][\"_elements\"][0]"
+						},
+						"_parentnode": {
+							"$ref": "$[\"document\"][\"_elements\"][0]"
+						},
+						"_style": {
+							"_id": 10,
+							"_name": "Style[10]",
+							"_attributes": {
+								"visibility": true,
+								"left": 0,
+								"top": 0,
+								"position": "",
+								"stylesheet": {
+									"cssText": ""
+								}
+							},
+							"tostring": "() => {\n        return this._name;\n    }",
+							"toString": "() => {\n        return this._name;\n    }"
+						}
+					}
+				],
+				"_attributes": [],
+				"_class": "",
+				"__vgRuntimeStyle": "",
+				"_nodename": "html",
+				"toString": "function() {\n        return this._name;\n    }",
+				"appendchild": "function(e) {\n        util_log(this._name + \".appendChild(\" + e._name + \")\");\n        if (this._children.length == 0) {\n            this.firstChild = e;\n        }\n        this._children[this._children.length] = e;\n        e.parentNode = this;\n        e.parentelement = this;\n        return e;\n    }",
+				"removechild": "function(e) {\n        util_log(this._name + \".removeChild(\" + e._name + \") - dummy\");\n        return e;\n    }",
+				"setattribute": "function(n, v) {\n        util_log(this._name + \".setAttribute(\" + n + \", \" + v + \")\");\n        this._attributes[n] = v;\n    }",
+				"_firstchild": {
+					"$ref": "$[\"document\"][\"_elements\"][0][\"_children\"][0]"
+				},
+				"_parentelement": "",
+				"_parentnode": "",
+				"_style": {
+					"_id": 8,
+					"_name": "Style[8]",
+					"_attributes": {
+						"visibility": true,
+						"left": 0,
+						"top": 0,
+						"position": "",
+						"stylesheet": {
+							"cssText": ""
+						}
+					},
+					"tostring": "() => {\n        return this._name;\n    }",
+					"toString": "() => {\n        return this._name;\n    }"
+				}
+			},
+			{
+				"$ref": "$[\"document\"][\"_elements\"][0][\"_children\"][1]"
+			},
+			{
+				"$ref": "$[\"document\"][\"_elements\"][0][\"_children\"][0]"
+			}
+		],
+		"getelementsbytagname": "function(n) {\n        var ret = []\n        util_log(this._name + \".getElementsByTagName(\" + n + \")\");\n        for(i = 0; i < this._elements.length; i++) {\n            var e = this._elements[i];\n            if (e.elementName.toLowerCase() === n.toLowerCase()) {\n                ret[ret.length] = e;\n            }\n        }\n        util_log(this._name + \".getElementsByTagName(\" + n + \") ... \" + ret.length + \" found\");\n        return ret;\n    }",
+		"getelementsbyclassname": "function(n) {\n        var ret = []\n        util_log(this._name + \".getElementsByClassName(\" + n + \")\");\n        for(i = 0; i < this._elements.length; i++) {\n            var e = this._elements[i];\n            if (e.class.toLowerCase() === n.toLowerCase()) {\n                ret[ret.length] = e;\n            }\n        }\n        util_log(this._name + \".getElementsByClassName(\" + n + \") ... \" + ret.length + \" found\");\n        return ret;\n    }",
+		"getelementbyid": "function(n) {\n        util_log(this._name + \".getElementById(\" + n + \")\");\n        for(i = 0; i < this._elements.length; i++) {\n            var e = this._elements[i];\n            if ((\"\"+ e._id).toLowerCase() === n.toLowerCase()) {\n                util_log(this._name + \".getElementById(\" + n + \") => \" + e._name);\n                return e;\n            }\n        }\n        util_log(this._name + \".getElementById(\" + n + \") => null\");\n        return null;\n    }",
+		"createelement": "function(n) {\n        util_log(this._name + \".createElement(\" + n + \")\");\n        var e;\n        if (n.toLowerCase() === \"iframe\") {\n            e = new HTMLIFrameElement();\n        } else if (n.toLowerCase() === \"style\") {\n            e = new Style();\n        } else {\n            e = new Element(n);\n        }\n        this._elements[this._elements.length] = e;\n        return e;\n    }",
+		"createtextnode": "function(n) {\n        util_log(this._name + \".createTextNode(\" + n + \")\");\n        return new Element(n);\n    }",
+		"createstylesheet": "function(n) {\n        util_log(this._name + \".createStyleSheet(\" + n + \")\");\n        return this.createelement(\"style\");\n    }",
+		"write": "function(c) {\n        util_log(this._name + \".write(content) \" + c.length + \" bytes\");\n        util_log(\"=> '\" + c + \"'\");\n        _content = c;\n        _browser_documents[_browser_documents.length] = c;\n    }",
+		"writeln": "function(c) {\n        util_log(this._name + \".writeln(content) \" + c.length + \" bytes\");\n        util_log(\"=> '\" + c + \"'\");\n        _content = c;\n        _browser_documents[_browser_documents.length] = c;\n    }",
+		"_addElementById": "function(id, content) {\n        var e = new Element(\"div\");\n        e.id = _object_id;\n        e.innerHTML = content;\n        this._elements[this._elements.length] = e;\n    }",
+		"_addElementByClass": "function(cls, content) {\n        var e = new Element(\"div\");\n        e.class = cls;\n        e.innerHTML = content;\n        this._elements[this._elements.length] = e;\n    }",
+		"_props": {
+			"body": {
+				"$ref": "$[\"document\"][\"_elements\"][0][\"_children\"][1]"
+			},
+			"referrer": "http://example.com/",
+			"cookie": "",
+			"namespaces": "Collection[13]"
+		},
+		"_location": {
+			"$ref": "$[\"location\"]"
+		},
+		"documentelement": {
+			"$ref": "$[\"document\"][\"_elements\"][0]"
+		},
+		"head": {
+			"$ref": "$[\"document\"][\"_elements\"][0][\"_children\"][0]"
+		},
+		"toString": "() => { return \"document\" }"
+	},
+	"Image": "function(w, h) {\n    Element.call(this, \"Image\");\n    util_log(\"Image(\" + w + \", \" + h + \")\");\n\n    this._width = w;\n    this._height = h;\n    _defineSingleProperty(this, \"width\", \"_width\");\n    _defineSingleProperty(this, \"height\", \"_height\");\n}",
+	"_agents": {
+		"IE11_W10": {
+			"_browser_type": "IE11 on Win10 64bit",
+			"userAgent": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; rv:11.0) like Gecko",
+			"vendor": ""
+		},
+		"IE8": {
+			"_browser_type": "IE8 on Win10 64bit",
+			"userAgent": "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 10.0; WOW64; Trident/7.0; Touch; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729)"
+		},
+		"IE7": {
+			"_browser_type": "IE7 on Vista",
+			"userAgent": "Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 6.0; en-US)"
+		},
+		"iPhone": {
+			"_browser_type": "iPhone?",
+			"userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 8_1_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) CriOS/47.0.2526.70 Mobile/12B436 Safari/600.1.4 (000410)",
+			"vendor": "Apple"
+		},
+		"Firefox": {
+			"_browser_type": "Firefox on Win10 64bit",
+			"userAgent": "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0",
+			"vendor": ""
+		},
+		"Chrome": {
+			"$ref": "$[\"window\"][\"navigator\"][\"_props\"]"
+		}
+	},
+	"_unescape_calls": [],
+	"_unescape_retuns": [],
+	"_orig_unescape": "_orig_unescape",
+	"unescape": "unescape",
+	"_config": {
+		"sandbox_sequence1": ["env/eval.js", "env/wscript.js"],
+		"sandbox_sequence": [
+			"env/utils.js",
+			"env/eval.js",
+			"env/function.js",
+			"env/wscript.js",
+			"env/browser.js",
+			"env/agents.js",
+			"env/other.js",
+			"env/console.js"
+		],
+		"browser_type": "Chrome",
+		"malware_files": ["xyz.js"],
+		"context_dump_after": "chrome__1622070956.json",
+		"save_files": "./output_chrome",
+		"timeout": 60000
+	},
+	"_arguments": "--trace --down=y -o chrome__1622070956.json -s ./output_chrome -b Chrome xyz.js"
+}

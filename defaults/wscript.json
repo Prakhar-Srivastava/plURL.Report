@@ -1,0 +1,221 @@
+{
+	"_download": "Yes",
+	"toString": "() => {\n    return \"sandbox\";\n}",
+	"_object_id": 5,
+	"util_log": "util_log",
+	"Buffer": "function Buffer(arg, encodingOrOffset, length) {\n  showFlaggedDeprecation();\n  // Common case.\n  if (typeof arg === 'number') {\n    if (typeof encodingOrOffset === 'string') {\n      throw new ERR_INVALID_ARG_TYPE('string', 'string', arg);\n    }\n    return Buffer.alloc(arg);\n  }\n  return Buffer.from(arg, encodingOrOffset, length);\n}",
+	"_options": {},
+	"_proxy_verbose": false,
+	"_sync_request": "function doRequest(method, url, options) {\n  if (!spawnSync) {\n    throw new Error(\n      'Sync-request requires node version 0.12 or later.  If you need to use it with an older version of node\\n' +\n      'you can `npm install sync-request@2.2.0`, which was the last version to support older versions of node.'\n    );\n  }\n  var req = JSON.stringify({\n    method: method,\n    url: url,\n    options: options\n  });\n  var res = spawnSync(process.execPath, [require.resolve('./lib/worker.js')], {input: req});\n  if (res.status !== 0) {\n    throw new Error(res.stderr.toString());\n  }\n  if (res.error) {\n    if (typeof res.error === 'string') res.error = new Error(res.error);\n    throw res.error;\n  }\n  var response = JSON.parse(res.stdout);\n  if (response.success) {\n    return new HttpResponse(response.response.statusCode, response.response.headers, response.response.body, response.response.url);\n  } else {\n    throw new Error(response.error.message || response.error || response);\n  }\n}",
+	"_data": {
+		"eval_calls": []
+	},
+	"_sc": ">>> Silencing catch ",
+	"_script_name": "xyz.js",
+	"_trace": "function _trace(t) {\n    try {\n        throw new Error(t);\n    } catch (err) {\n        util_log(\"Trace Non-\" + _inspect(err));\n    }\n}",
+	"_defineProperty": "_defineProperty",
+	"_truncateOutput": "_truncateOutput",
+	"_defineSingleProperty": "_defineSingleProperty",
+	"_proxy_options": {
+		"dont_fail": true,
+		"verbose": false
+	},
+	"_proxy": "_proxy",
+	"eval": "function eval(s) { /* [native code ] */ return _(s)}",
+	"_Function_calls": {},
+	"_orig_Function": "_orig_Function",
+	"Function": "Function",
+	"_wscript_saved_files": {},
+	"_wscript_urls": [],
+	"_wscript_wmis": [],
+	"_wscript_objects": [],
+	"Date": "function Date() { [native code] }",
+	"print": "function() {\n    a = _truncateOutput(Array.prototype.slice.call(arguments, 0).join(\",\"));\n    util_log(\"print(\" + a + \")\");\n}",
+	"TextStream": "TextStream",
+	"FileSystemObject": "FileSystemObject",
+	"FS": {
+		"C:": {
+			"PROGRAMDATA": {},
+			"PROGRAM FILES": {
+				"COMMON FILES": {}
+			},
+			"PROGRAM FILES (X86)": {
+				"COMMON FILES": {}
+			},
+			"USERS": {
+				"USER": {
+					"APPDATA": {
+						"LOCAL": {
+							"TEMP": {}
+						},
+						"ROAMING": {},
+						"LOCALLOW": {}
+					},
+					"DESKTOP": {}
+				},
+				"DEFAULT": {
+					"APPDATA": {
+						"LOCAL": {
+							"TEMP": {}
+						},
+						"ROAMING": {},
+						"LOCALLOW": {}
+					},
+					"DESKTOP": {}
+				},
+				"PUBLIC": {
+					"APPDATA": {
+						"LOCAL": {
+							"TEMP": {}
+						},
+						"ROAMING": {},
+						"LOCALLOW": {}
+					},
+					"DESKTOP": {}
+				}
+			},
+			"WINDOWS": {
+				"SYSTEM32": {
+					"DRIVERS": {
+						"ETC": {
+							"SERVICES": "FILE CONTENT"
+						}
+					}
+				}
+			}
+		},
+		"writeFile": "function(f, c) {\n        var abs = _pw32.isAbsolute(f);\n        if (!abs)\n            util_log(\"FIXME: FS.writeFile - relative path\");\n        var parts = _pw32.normalize(f).split(_pw32.sep);\n        var t = this;\n        var path = Array.prototype.slice.call(parts, 0, -1);\n        var fname = parts[parts.length - 1];\n        util_log(\"FS.writeFile(\" + f + \", \" + _truncateOutput(c) + \")\");\n        for (let p of path) {\n            if (p === \"\")\n                continue;\n            if (!(p in t))\n                t[p] = {}\n            t = t[p.toUpperCase()];\n        }\n        t[fname.toUpperCase()] = c;\n    }"
+	},
+	"ENV": {
+		"ALLUSERSPROFILE": "C:\\ProgramData",
+		"APPDATA": "C:\\Users\\User\\AppData\\Roaming",
+		"COMMONPROGRAMFILES": "C:\\Program Files\\Common Files",
+		"COMMONPROGRAMFILES(X86)": "C:\\Program Files (x86)\\Common Files",
+		"COMMONPROGRAMW6432": "C:\\Program Files\\Common Files",
+		"COMPUTERNAME": "COMPUTER",
+		"COMSPEC": "C:\\WINDOWS\\system32\\cmd.exe",
+		"CWD": "C:\\Users\\User",
+		"FPS_BROWSER_APP_PROFILE_STRING": "Internet Explorer",
+		"FPS_BROWSER_USER_PROFILE_STRING": "Default",
+		"FP_NO_HOST_CHECK": "NO",
+		"HOMEDRIVE": "C:",
+		"HOMEPATH": "\\Users\\User",
+		"LANG": "EN",
+		"LOCALAPPDATA": "C:\\Users\\User\\AppData\\Local",
+		"LOGONSERVER": "\\\\COMPUTER",
+		"NUMBER_OF_PROCESSORS": "4",
+		"OS": "Windows_NT",
+		"PATH": "C:\\Users\\User\\AppData\\Roaming\\npm;C:\\Program Files\\nodejs\\;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Lenovo\\Fingerprint Manager Pro\\;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files (x86)\\Bitvise SSH Client;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft Emulator Manager\\1.0\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;C:\\Strawberry\\c\\bin;C:\\Strawberry\\perl\\site\\bin;C:\\Strawberry\\perl\\bin;C:\\Program Files\\TortoiseGit\\bin;C:\\Program Files\\dotnet\\;C:\\Tcl\\bin;C:\\Program Files (x86)\\Nmap;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Users\\User\\AppData\\Roaming\\npm;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Lenovo\\Fingerprint Manager Pro\\;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files (x86)\\Bitvise SSH Client;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft Emulator Manager\\1.0\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;C:\\Strawberry\\c\\bin;C:\\Strawberry\\perl\\site\\bin;C:\\Strawberry\\perl\\bin;C:\\Program Files\\TortoiseGit\\bin;C:\\Program Files\\dotnet\\;C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps;",
+		"PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC",
+		"PROCESSOR_ARCHITECTURE": "AMD64",
+		"PROCESSOR_IDENTIFIER": "Intel64 Family 6 Model 61 Stepping 4, GenuineIntel",
+		"PROCESSOR_LEVEL": "6",
+		"PROCESSOR_REVISION": "3d04",
+		"PROGRAMDATA": "C:\\ProgramData",
+		"PROGRAMFILES": "C:\\Program Files",
+		"PROGRAMFILES(X86)": "C:\\Program Files (x86)",
+		"PROGRAMW6432": "C:\\Program Files",
+		"PROMPT": "$P$G",
+		"PSMODULEPATH": "C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\PowerShell\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\PowerShell\\ResourceManager\\AzureResourceManager\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\PowerShell\\ServiceManagement\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\PowerShell\\Storage\\",
+		"PUBLIC": "C:\\Users\\Public",
+		"SESSIONNAME": "Console",
+		"SYSTEMDRIVE": "C:",
+		"SYSTEMROOT": "C:\\WINDOWS",
+		"TEMP": "C:\\Users\\User\\AppData\\Local\\Temp",
+		"TMP": "C:\\Users\\User\\AppData\\Local\\Temp",
+		"USERDOMAIN": "COMPUTER",
+		"USERDOMAIN_ROAMINGPROFILE": "COMPUTER",
+		"USERNAME": "User",
+		"USERPROFILE": "C:\\Users\\User",
+		"WINDIR": "C:\\WINDOWS",
+		"SYSTEMDIRECTORY": "C:\\WINDOWS\\System32"
+	},
+	"FolderObject": "FolderObject",
+	"DriveObject": "DriveObject",
+	"Folder2": "Folder2",
+	"FolderItem": "FolderItem",
+	"FileObject": "FileObject",
+	"ret": {
+		"_name": "console",
+		"time": "function(a) {\n        util_log(this._name + \".time(\" + a + \")\");\n        return;\n    }",
+		"timeend": "function(a) {\n        util_log(this._name + \".timeEnd(\" + a + \")\");\n        return;\n    }",
+		"log": "function(a) {\n        util_log(this._name + \".log(\" + a + \")\");\n        return;\n    }",
+		"assert": "function(a) {\n        util_log(this._name + \".assert(\" + a + \")\");\n        return;\n    }",
+		"clear": "function(a) {\n        util_log(this._name + \".clear\" + a + \")\");\n        return;\n    }",
+		"count": "function(a) {\n        util_log(this._name + \".count(\" + a + \")\");\n        return;\n    }",
+		"dir": "function(a) {\n        util_log(this._name + \".dir(\" + a + \")\");\n        return;\n    }",
+		"dirxml": "function(a) {\n        util_log(this._name + \".dirxml(\" + a + \")\");\n        return;\n    }",
+		"error": "function(a) {\n        util_log(this._name + \".(\" + a + \")\");\n        return;\n    }",
+		"group": "function(a) {\n        util_log(this._name + \".group(\" + a + \")\");\n        return;\n    }",
+		"groupcollapsed": "function(a) {\n        util_log(this._name + \".groupCollapsed(\" + a + \")\");\n        return;\n    }",
+		"groupend": "function(a) {\n        util_log(this._name + \".groupEnd(\" + a + \")\");\n        return;\n    }",
+		"info": "function(a) {\n        util_log(this._name + \".info(\" + a + \")\");\n        return;\n    }",
+		"profile": "function(a) {\n        util_log(this._name + \".profile(\" + a + \")\");\n        return;\n    }",
+		"profileend": "function(a) {\n        util_log(this._name + \".profileEnd(\" + a + \")\");\n        return;\n    }",
+		"table": "function(a) {\n        util_log(this._name + \".table(\" + a + \")\");\n        return;\n    }",
+		"timestamp": "function(a) {\n        util_log(this._name + \".timeStamp(\" + a + \")\");\n        return;\n    }",
+		"trace": "function(a) {\n        util_log(this._name + \".trace(\" + a + \")\");\n        return;\n    }",
+		"warn": "function(a) {\n        util_log(this._name + \".warn(\" + a + \")\");\n        return;\n    }",
+		"toString": "() => { return \"console\" }"
+	},
+	"Collection": "Collection",
+	"lcname": "tojson",
+	"Enumerator": "Enumerator",
+	"WshArguments": "WshArguments",
+	"WScript": "Windows Script Host",
+	"create_object": "create_object",
+	"GetObject": "GetObject",
+	"WSH": {
+		"$ref": "$[\"WScript\"]"
+	},
+	"AutomationObject": "AutomationObject",
+	"MSScriptControl_ScriptControl": "MSScriptControl_ScriptControl",
+	"Scripting_Dictionary": "Scripting_Dictionary",
+	"ActiveXObject": "ActiveXObject",
+	"Shell_Application": "Shell_Application",
+	"Process": "Process",
+	"REG": {
+		"HKLM\\SOFTWARE\\MICROSOFT\\WINDOWS NT\\CURRENTVERSION\\PRODUCTID": "00330-80000-00000-AA676",
+		"HKLM\\SOFTWARE\\MICROSOFT\\WINDOWS NT\\CURRENTVERSION\\SYSTEMROOT": "c:\\WINDOWS",
+		"HKLM\\SOFTWARE\\CLASSES\\MIME\\DATABASE\\RFC1766\\1034": "en-us;@%SystemRoot%system32mlang.dll,-4386",
+		"HKLM\\SOFTWARE\\CLASSES\\MIME\\DATABASE\\RFC1766\\0409": "en-us;@%SystemRoot%system32mlang.dll,-4386",
+		"HKCR\\HTTP\\SHELL\\OPEN\\COMMAND\\": "\"C:\\Chrome\\chrome.exe\" -url \"%1\"",
+		"eee": ""
+	},
+	"WScript_Shell": "WScript_Shell",
+	"Shell": "WScript_Shell",
+	"WScript_Network": "WScript_Network",
+	"VBScript_RegExp": "VBScript_RegExp",
+	"WshEnvironment": "WshEnvironment",
+	"WshShortcut": "WshShortcut",
+	"ADODB_Stream": "function() {\n    this.id = _object_id++;\n    this._name = \"ADODB_Stream[\" + this.id + \"]\";\n    util_log(\"new \" + this._name);\n\n    //_trace(\"ADOBE\");\n\n    this.open = function() {\n        util_log(this._name + \".Open()\");\n    }\n    this._type = 2;\n    this._position = 0;\n    this._size = 0;\n    this._content = '';\n    this._charset = undefined;\n    this.tostring = this.toString = () => {\n        return this._name /*JSON.stringify(this)*/\n    }\n\n    this.write = function(a) {\n        this.content = a;\n        if (typeof a === 'undefined')\n            util_log(this._name + \".Write(undefined) - Error ?\");\n        else {\n            util_log(this._name + \".Write(str) - \" + a.length + \" bytes\");\n            this.size = a.length\n        }\n    }\n    this.writetext = function(a) {\n        var encoding = 'binary'\n        if (typeof a === 'undefined')\n            util_log(this._name + \".WriteText(undefined) - Error ?\");\n        else {\n            if (this.type == 2 && typeof this.charset !== 'undefined') {\n                this.content = _iconv.encode(a, this.charset);\n                encoding = this.charset;\n            } else {\n                this.content = a;\n            }\n            util_log(this._name + \".WriteText(str) - \" + a.length + \" bytes, encoding: \" + encoding);\n            this.size = this.content.length\n        }\n    }\n    this.savetofile = function(a, b) {\n        util_log(this._name + \".SaveToFile(\" + a + \", \" + b + \")\");\n        _wscript_saved_files[a] = this.content;\n    }\n    this.saveToFile = this.savetofile;\n\n    this.loadfromfile = function(a) {\n            var encoding = 'binary';\n            //util_log(this._name + \".LoadFromFile(\" + a + \")\");\n            if (this.type == 2 && typeof this.charset !== 'undefined') {\n                //util_log(\"here\");\n                this.content = _iconv.decode(Buffer.from(_wscript_saved_files[a]), this.charset);\n                encoding = this.charset;\n            } else {\n                this.content = _wscript_saved_files[a];\n            }\n            util_log(this._name + \".LoadFromFile(\" + a + \") \" + this.content.length + \" bytes, encoding: \" + encoding);\n            this.Position = 0;\n        }\n        // adReadAll -1 Default. Reads all bytes from the stream, from the current position onwards to the EOS marker.\n        // This is the only valid StreamReadEnum value with binary streams (Type is adTypeBinary).\n        // adReadLine -2 Reads the next line from the stream (designated by the LineSeparator property).\n    this.readtext = function(a) {\n        util_log(this._name + \".ReadText(\" + a + \")\");\n        if (typeof a === \"undefined\" || a == adReadAll) {\n            return this.content;\n        } else if (a == adReadLine) {\n            throw new Error(\"FIXME: \" + this._name + \".ReadText(\" + a + \") not implemented.\");\n        } else if (a > 0) {\n            return this.content.slice(this.Position, this.Position + a);\n        } else {\n            return this.content;\n        }\n    }\n    this.read = function(a) {\n        util_log(this._name + \".Read(\" + a + \")\");\n        if (typeof a === \"undefined\" || a == adReadAll) {\n            return this.content;\n        } else if (a == adReadLine) {\n            throw new Error(\"FIXME: \" + this._name + \".Read(\" + a + \") not implemented.\");\n        } else if (a > 0) {\n            return this.content.slice(this.Position, this.Position + a);\n        } else {\n            return this.content;\n        }\n    }\n    this.close = function() {\n        util_log(this._name + \".Close()\");\n    }\n    this.copyto = function(t) {\n        util_log(this._name + \".CopyTo(\" + t + \")\");\n        t._type = this._type;\n        t._position = this._position;\n        t._size = this._size;\n        t._content = this._content;\n        t._charset = this._charset;\n    }\n    _defineSingleProperty(this, \"charset\", \"_charset\");\n    //_defineSingleProperty(this, \"readtext\", \"_content\");\n    //_defineSingleProperty(this, \"read\", \"_content\");\n    _defineSingleProperty(this, \"content\", \"_content\");\n    // adTypeBinary 1 Indicates binary data.\n    // adTypeText 2 Default. Indicates text data, which is in the character set specified by Charset.\n    _defineSingleProperty(this, \"type\", \"_type\");\n    _defineSingleProperty(this, \"position\", \"_position\");\n    _defineSingleProperty(this, \"size\", \"_size\");\n}",
+	"ADODB_Recordset": "ADODB_Recordset",
+	"ADODB_Fields": "function(father) {\n    this.id = _object_id++;\n    this._name = \"ADODB_Fields[\" + this.id + \"]\";\n    this._father = father;\n    util_log(\"new \" + this._name);\n    this.toString = this.tostring = () => {\n        return this._name\n    }\n    _defineSingleProperty(this, \"item\");\n    _defineSingleProperty(this, \"count\");\n    this._items = [];\n    this._count = 0;\n    this._item = function(i) {\n        return this._items[i];\n    }\n    this.resync = function() {\n        let a = _truncateOutput(Array.prototype.slice.call(arguments, 0).join(\",\"));\n        util_log(this._name + \".Resync(\" + a + \")\");\n    }\n    this.append = function() {\n        let fds = Array.prototype.slice.call(arguments, 0);\n        let a = _truncateOutput(fds.join(\",\"));\n        util_log(this._name + \".Append(\" + a + \")\");\n        var newfield = _proxy(new ADODB_Field(this))\n        if (fds.length > 0) {\n            _defineSingleProperty(this._father, fds[0]);\n            newfield.name = fds[0]\n        }\n        if (fds.length > 1)\n            newfield.type = fds[1]\n        if (fds.length > 2)\n            newfield.definedsize = fds[2]\n        this._father[fds[0]] = newfield;\n        this._items[this._items.length] = newfield;\n    }\n    this.toString = function() {\n        return this._name;\n    }\n}",
+	"ADODB_Field": "function(father) {\n    this.id = _object_id++;\n    this._name = \"ADODB_Field[\" + this.id + \"]\";\n    this._father = father;\n    util_log(\"new \" + this._name);\n    this.toString = this.tostring = () => {\n        return this._name\n    }\n    _defineSingleProperty(this, \"name\", \"_fieldname\");\n    _defineSingleProperty(this, \"value\");\n    _defineSingleProperty(this, \"definedsize\");\n    this._value = \"\";\n    this.appendchunk = function() {\n        let fds = Array.prototype.slice.call(arguments, 0);\n        let a = _truncateOutput(fds.join(\",\"));\n        util_log(this._name + \".AppendChunk(\" + a + \")\");\n        this._value = fds[0]\n    }\n    this.toString = function() {\n        return this._name;\n    }\n}",
+	"Msxml2_DOMDocument_6_0": "Msxml2_DOMDocument_6_0",
+	"MSXML2_XMLHTTP": "MSXML2_XMLHTTP",
+	"Style": "Style",
+	"Node": "Node",
+	"Element": "Element",
+	"HTMLElement": "HTMLElement",
+	"HTMLIFrameElement": "HTMLIFrameElement",
+	"_unescape_calls": [],
+	"_unescape_retuns": [],
+	"_orig_unescape": "_orig_unescape",
+	"unescape": "unescape",
+	"_config": {
+		"sandbox_sequence": [
+			"env/utils.js",
+			"env/eval.js",
+			"env/function.js",
+			"env/wscript.js",
+			"env/other.js",
+			"env/console.js"
+		],
+		"malware_files": ["xyz.js"],
+		"context_dump_after": "wscript__1622107624.json",
+		"save_files": "./output_chrome",
+		"timeout": 60000
+	},
+	"_arguments": "--trace --down=y -o wscript__1622107624.json -s ./output_chrome -c ./config_wscript_only.json xyz.js"
+}
