@@ -63,15 +63,18 @@ function deflate(zipFile) {
 		}));
 }
 
-function getSandboxResult(url) {
+function getSandboxResult({ endpoint, zipReport }) {
 	return new Promise((resolve, reject) => {
-		fetchZip(url)
-			.then((zipBuff) => resolve(deflate(zipBuff)))
+		fetchZip(zipReport)
+			.then((zipBuff) =>
+				resolve({ endpoint, zipReport: deflate(zipBuff) })
+			)
 			.catch((err) => reject(err));
 	});
 }
 
-const getSandboxResults = (urls) => Promise.all(urls.map(getSandboxResult));
+const getSandboxResults = (urlReport) =>
+	Promise.all(urlReport.map(getSandboxResult));
 
 const fullPath = (p) => (isAbsolute(p) ? p : join(process.cwd(), p));
 

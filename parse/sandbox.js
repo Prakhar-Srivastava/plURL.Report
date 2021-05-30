@@ -60,12 +60,12 @@ const BROWSERS = new Set([
 
 async function parse({ sandbox }) {
 	try {
-		const jsReports = await sandbox;
+		const unzippedReports = await sandbox;
 
 		return purge(
-			jsReports.map((emulatorReport) =>
+			unzippedReports.map(({ endpoint, zipReport }) =>
 				purge(
-					emulatorReport.map(({ name, data }) => {
+					zipReport.map(({ name, data }) => {
 						const regex = /__env-(.+?)__([0-9]+?)\.json$/;
 						const [, emulator, timeOfScan] = name.match(regex);
 						const isBrowser = BROWSERS.has(emulator);
@@ -75,6 +75,7 @@ async function parse({ sandbox }) {
 						);
 
 						return {
+							endpoint,
 							emulator,
 							changedKeys,
 							// data,
