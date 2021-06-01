@@ -1,7 +1,7 @@
 /** @format */
 
 'use-strict';
-const { prune } = require('../utils');
+const { prune, purge } = require('../utils');
 
 function parse({ preliminary: prelim }) {
 	const {
@@ -22,7 +22,14 @@ function parse({ preliminary: prelim }) {
 	const { iframes = [], js_external = [], js_local = [], urls = [] } = links;
 
 	const { x_frame_options, ...header } = recom?.headers_minor ?? {};
-	let threats = {
+	const {
+		no_csp,
+		server_banners,
+		strict_transport_security,
+		x_content_type_options,
+	} = header;
+
+	const threats = {
 		critical: [{ blacklists }],
 		high: [
 			{
@@ -41,13 +48,20 @@ function parse({ preliminary: prelim }) {
 			}
 		],
 		low: [
-			header?.csp,
-			header?.no_csp,
-			header?.server_banners,
-			header?.strict_transport_security,
-			header?.x_content_type_options,
-			warn?.scan_failed,
-			warn?.site_issue
+			{
+				header_issues: {
+					no_csp,
+					server_banners,
+					strict_transport_security,
+					x_content_type_options,
+				}
+			},
+			{
+				warnings: {
+					scan_issue:  warn?.scan_failed,
+					site_issue: warn?.site_issue
+				}
+			}
 		]
 	};
 

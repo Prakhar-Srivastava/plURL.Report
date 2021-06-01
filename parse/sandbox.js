@@ -1,7 +1,7 @@
 /** @format */
 
 'use-strict';
-const { isEqual } = require('lodash');
+const { isEqual, pick } = require('lodash');
 const { relativePath, purge } = require('../utils');
 
 function stripParamerters(json, isBrowser = true) {
@@ -13,17 +13,29 @@ function stripParamerters(json, isBrowser = true) {
 			_arguments,
 			_script_name,
 			_object_id,
+			lcname,
+			ret,
+			vname,
 			...useful
 		} = json;
 		delete useful.window.appVersion;
 		delete useful.window.navigator.appVersion;
 		delete useful.window.navigator._props;
+		delete useful.window.id;
 
 		return useful;
 	}
 
-	let { _object_id, lcname, _config, _arguments, _script_name, ...useful } =
-		json;
+	let {
+		_object_id,
+		lcname,
+		_config,
+		_arguments,
+		_script_name,
+		ret,
+		vname,
+		...useful
+	} = json;
 
 	return useful;
 }
@@ -58,6 +70,152 @@ const BROWSERS = new Set([
 	'Chrome'
 ]);
 
+function analyzeChanges(keys, data, isBrowser) {
+	const handleKey = (key) => {
+		switch (key) {
+			case 'window': {
+				const value = data[key];
+				const default_value = loadDefault(isBrowser)[key];
+				const ignore = new Set(['_location', '_name', '_props']);
+				const changes = diff(default_value, value)
+					.filter((k) => ignore.has(k));
+
+				if (changes.length)
+					return {
+						threats: {
+							low: {
+								window_object_changes: changes,
+								remarks: ['Data Loss', 'Potential Obfuscation']
+							}
+						}
+					}
+			}
+			case 'ENV': return {
+				threats: {
+					critical: {
+						environment_tampered: data[key],
+						remarks: [
+							'PATH Tampered',
+							'Unauthorised Install',
+							'Malacious Software'
+						]
+					}
+				}
+			}
+			case 'FS': return {
+				threats: {
+					critical: {
+						reads_writes: data[key],
+						remarks: [
+							'Malacious files in critical directories',
+							'Unauthorised Install',
+							'Unwanted Software',
+							'Malacious Software'
+						]
+					}
+				}
+			}
+			case 'REG': return {
+				threats: {
+					critical: {
+						registry_tampered: data[key],
+						remarks: [
+							'Unauthorised Install',
+							'Unwanted Software',
+							'Malacious Software'
+						]
+					}
+				}
+			}
+			case '_browser_documents': break;
+			case '_unescape_calls': return {
+				threats: {
+					high: {
+						unescape_calls: data[key],
+						remarks: [
+							'Deprecated',
+							'Obfuscation'
+						]
+					}
+				}
+			}
+			case '_unescape_retuns': return {
+				threats: {
+					high: {
+						unescape_returns: data[key],
+						remarks: [
+							'Deprecated',
+							'Obfuscation'
+						]
+					}
+				}
+			}
+			case '_wscript_objects': return {
+				threats: {
+					high: {
+						windows_script_objects: data[key],
+						remarks: [
+							'Malacious',
+							'Malware',
+							'Windows Script'
+						]
+					}
+				}
+			}
+			case '_wscript_urls': return {
+				threats: {
+					critical: {
+						payload_urls: data[key],
+						remarks: [
+							'Malacious',
+							'Malware',
+							'Windows Script',
+							'Payload'
+						]
+					}
+				}
+			}
+			case '_wscript_wmis': return {
+				threats: {
+					critical: {
+						wmi: data[key],
+						remarks: [
+							'Malacious',
+							'Malware',
+							'Windows Script',
+							'Remote Execution',
+							'Remote Connection'
+						]
+					}
+				}
+			}
+			case 'document': break;
+			default: return {
+				threats: {
+					low: {
+						global_scope: key,
+						remarks: ['Data Loss', 'Potential Obfuscation']
+					}
+				}
+			}
+		}
+	};
+
+	const global_threats = {
+		critical: [], high: [], medium: [], low: []
+	};
+
+	keys.forEach((key) => {
+		const { threats = {} } = handleKey(key) || {};
+		const levels = Object.keys(threats);
+		levels.forEach((level) => {
+			global_threats[level].concat(threats[level]);
+		});
+	});
+
+	return { threats: global_threats };
+}
+
 async function parse({ sandbox }) {
 	try {
 		const unzippedReports = await sandbox;
@@ -66,22 +224,40 @@ async function parse({ sandbox }) {
 			unzippedReports.map(({ endpoint, zipReport }) =>
 				purge(
 					zipReport.map(({ name, data }) => {
-						const regex = /__env-(.+?)__([0-9]+?)\.json$/;
-						const [, emulator, timeOfScan] = name.match(regex);
-						const isBrowser = BROWSERS.has(emulator);
-						const changedKeys = diff(
-							loadDefault(isBrowser),
-							stripParamerters(data, isBrowser)
-						);
+						const envRE = /__env-(.+?)__([0-9]+?)\.json$/;
+						const outRE = /output_(.+?)urls.json$/;
 
-						return {
-							endpoint,
-							emulator,
-							changedKeys,
-							// data,
-							name,
-							timeOfScan
-						};
+						const envMatch = name.match(envRE);
+						const outMatch = name.match(outRE);
+
+						if (envMatch) {
+							const [, emulator, timeOfScan] = envMatch;
+							const isBrowser = BROWSERS.has(emulator);
+							const changedKeys = diff(
+								loadDefault(isBrowser),
+								stripParamerters(data, isBrowser)
+							);
+
+							return {
+								endpoint,
+								emulator,
+								changedKeys,
+								// data,
+								name,
+								timeOfScan,
+								...analyzeChanges(changedKeys, data, isBrowser)
+							};
+						} else if (outMatch) {
+							const [, emulator] = outMatch;
+							const payload = data;
+
+							return {
+								endpoint,
+								emulator,
+								name,
+								payload
+							};
+						}
 					})
 				)
 			)
@@ -95,5 +271,6 @@ async function parse({ sandbox }) {
 
 module.exports = {
 	parse,
-	diff
+	diff,
+	stripParamerters
 };
