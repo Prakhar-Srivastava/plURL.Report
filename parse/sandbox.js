@@ -242,7 +242,7 @@ async function parse({ sandbox }) {
 								endpoint,
 								emulator,
 								changedKeys,
-								// data,
+								data,
 								name,
 								timeOfScan,
 								...analyzeChanges(changedKeys, data, isBrowser)
