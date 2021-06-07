@@ -46,3 +46,8 @@ if (args.length) {
 				.catch((exp) => console.error('Exception', exp));
 		});
 }
+
+module.exports = {
+	read,
+	parseFile,
+};
