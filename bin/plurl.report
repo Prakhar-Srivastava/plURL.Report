@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+'use strict';
+
+const { fullPath } = require('../utils');
+const { read, parseFile } = require('../index');
+const args = process.argv.slice(2).map(fullPath);
+
+if (args.length) {
+	const reads = args.map(read);
+
+	for (const json of reads)
+		try {
+			parseFile(json)
+				.then((result) => console.log(JSON.stringify(result)))
+				.catch((exp) => console.error('Exception', exp));
+		} catch (exp) {
+			console.error('Exception', exp);
+		}
+} else {
+	let buffs = [];
+
+	process.stdin
+		.on('data', (buff) => buffs.push(buff))
+		.on('end', () => {
+			const json = read(buffs);
+
+			parseFile(json)
+				.then((result) => console.log(JSON.stringify(result)))
+				.catch((exp) => console.error('Exception', exp));
+		});
+}
