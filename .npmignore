@@ -1,0 +1,12 @@
+.prettierignore
+.prettierrc.json
+1.json
+defaults/firefox.json
+defaults/iphone.json
+newreport.json
+*.zip
+report.json
+sample.json
+tests/
+urls_4
+yarn.lock
