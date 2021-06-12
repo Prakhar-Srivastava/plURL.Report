@@ -22,5 +22,5 @@ async function parseFile(json) {
 
 module.exports = {
 	read,
-	parseFile,
+	parseFile
 };

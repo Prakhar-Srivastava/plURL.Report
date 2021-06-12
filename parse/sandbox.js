@@ -77,8 +77,9 @@ function analyzeChanges(keys, data, isBrowser) {
 				const value = data[key];
 				const default_value = loadDefault(isBrowser)[key];
 				const ignore = new Set(['_location', '_name', '_props']);
-				const changes = diff(default_value, value)
-					.filter((k) => ignore.has(k));
+				const changes = diff(default_value, value).filter((k) =>
+					ignore.has(k)
+				);
 
 				if (changes.length)
 					return {
@@ -88,132 +89,139 @@ function analyzeChanges(keys, data, isBrowser) {
 								remarks: ['Data Loss', 'Potential Obfuscation']
 							}
 						}
-					}
+					};
+				else break;
 			}
-			case 'ENV': return {
-				threats: {
-					critical: {
-						environment_tampered: data[key],
-						remarks: [
-							'PATH Tampered',
-							'Unauthorised Install',
-							'Malacious Software'
-						]
+			case 'ENV':
+				return {
+					threats: {
+						critical: {
+							environment_tampered: data[key],
+							remarks: [
+								'PATH Tampered',
+								'Unauthorised Install',
+								'Malacious Software'
+							]
+						}
 					}
-				}
-			}
-			case 'FS': return {
-				threats: {
-					critical: {
-						reads_writes: data[key],
-						remarks: [
-							'Malacious files in critical directories',
-							'Unauthorised Install',
-							'Unwanted Software',
-							'Malacious Software'
-						]
+				};
+			case 'FS':
+				return {
+					threats: {
+						critical: {
+							reads_writes: data[key],
+							remarks: [
+								'Malacious files in critical directories',
+								'Unauthorised Install',
+								'Unwanted Software',
+								'Malacious Software'
+							]
+						}
 					}
-				}
-			}
-			case 'REG': return {
-				threats: {
-					critical: {
-						registry_tampered: data[key],
-						remarks: [
-							'Unauthorised Install',
-							'Unwanted Software',
-							'Malacious Software'
-						]
+				};
+			case 'REG':
+				return {
+					threats: {
+						critical: {
+							registry_tampered: data[key],
+							remarks: [
+								'Unauthorised Install',
+								'Unwanted Software',
+								'Malacious Software'
+							]
+						}
 					}
-				}
-			}
-			case '_browser_documents': break;
-			case '_unescape_calls': return {
-				threats: {
-					high: {
-						unescape_calls: data[key],
-						remarks: [
-							'Deprecated',
-							'Obfuscation'
-						]
+				};
+			case '_browser_documents':
+				break;
+			case '_unescape_calls':
+				return {
+					threats: {
+						high: {
+							unescape_calls: data[key],
+							remarks: ['Deprecated', 'Obfuscation']
+						}
 					}
-				}
-			}
-			case '_unescape_retuns': return {
-				threats: {
-					high: {
-						unescape_returns: data[key],
-						remarks: [
-							'Deprecated',
-							'Obfuscation'
-						]
+				};
+			case '_unescape_retuns':
+				return {
+					threats: {
+						high: {
+							unescape_returns: data[key],
+							remarks: ['Deprecated', 'Obfuscation']
+						}
 					}
-				}
-			}
-			case '_wscript_objects': return {
-				threats: {
-					high: {
-						windows_script_objects: data[key],
-						remarks: [
-							'Malacious',
-							'Malware',
-							'Windows Script'
-						]
+				};
+			case '_wscript_objects':
+				return {
+					threats: {
+						high: {
+							windows_script_objects: data[key],
+							remarks: ['Malacious', 'Malware', 'Windows Script']
+						}
 					}
-				}
-			}
-			case '_wscript_urls': return {
-				threats: {
-					critical: {
-						payload_urls: data[key],
-						remarks: [
-							'Malacious',
-							'Malware',
-							'Windows Script',
-							'Payload'
-						]
+				};
+			case '_wscript_urls':
+				return {
+					threats: {
+						critical: {
+							payload_urls: data[key],
+							remarks: [
+								'Malacious',
+								'Malware',
+								'Windows Script',
+								'Payload'
+							]
+						}
 					}
-				}
-			}
-			case '_wscript_wmis': return {
-				threats: {
-					critical: {
-						wmi: data[key],
-						remarks: [
-							'Malacious',
-							'Malware',
-							'Windows Script',
-							'Remote Execution',
-							'Remote Connection'
-						]
+				};
+			case '_wscript_wmis':
+				return {
+					threats: {
+						critical: {
+							wmi: data[key],
+							remarks: [
+								'Malacious',
+								'Malware',
+								'Windows Script',
+								'Remote Execution',
+								'Remote Connection'
+							]
+						}
 					}
-				}
-			}
-			case 'document': break;
-			default: return {
-				threats: {
-					low: {
-						global_scope: key,
-						remarks: ['Data Loss', 'Potential Obfuscation']
+				};
+			case 'document':
+				break;
+			default:
+				return {
+					threats: {
+						medium: {
+							global_scope: key,
+							remarks: ['Data Loss', 'Potential Obfuscation']
+						}
 					}
-				}
-			}
+				};
 		}
 	};
 
-	const global_threats = {
-		critical: [], high: [], medium: [], low: []
+	let global_threats = {
+		critical: [],
+		high: [],
+		medium: [],
+		low: []
 	};
 
 	keys.forEach((key) => {
 		const { threats = {} } = handleKey(key) || {};
 		const levels = Object.keys(threats);
 		levels.forEach((level) => {
-			global_threats[level].concat(threats[level]);
+			global_threats[level] = global_threats[level].concat(
+				threats[level]
+			);
 		});
 	});
 
-	return { threats: global_threats };
+	return { threats: { ...global_threats } };
 }
 
 async function parse({ sandbox }) {
@@ -242,7 +250,7 @@ async function parse({ sandbox }) {
 								endpoint,
 								emulator,
 								changedKeys,
-								data,
+								//data,
 								name,
 								timeOfScan,
 								...analyzeChanges(changedKeys, data, isBrowser)
@@ -255,7 +263,16 @@ async function parse({ sandbox }) {
 								endpoint,
 								emulator,
 								name,
-								payload
+								payload,
+								threats: {
+									critical: {
+										payload,
+										remarks: [
+											'Malware',
+											'Payload downloaded'
+										]
+									}
+								}
 							};
 						}
 					})

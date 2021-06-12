@@ -26,7 +26,7 @@ function parse({ preliminary: prelim }) {
 		no_csp,
 		server_banners,
 		strict_transport_security,
-		x_content_type_options,
+		x_content_type_options
 	} = header;
 
 	const threats = {
@@ -53,12 +53,12 @@ function parse({ preliminary: prelim }) {
 					no_csp,
 					server_banners,
 					strict_transport_security,
-					x_content_type_options,
+					x_content_type_options
 				}
 			},
 			{
 				warnings: {
-					scan_issue:  warn?.scan_failed,
+					scan_issue: warn?.scan_failed,
 					site_issue: warn?.site_issue
 				}
 			}
