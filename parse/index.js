@@ -30,12 +30,13 @@ function TI(parsed) {
 
 	if ((threats.critical?.length ?? 0) >= 1) score -= 70;
 	if ((threats.high?.length ?? 0) >= 1) score -= 50;
-	if ((threats.medium?.length ?? 0) >= 1) score -= 30;
+	const medLength = threats.medium?.length ?? 0;
+	if (medLength >= 1) score -= medLength <= 5 ? 10 : 30;
 	const lowLength = threats.low?.length ?? 0;
 	if (lowLength >= 1) score -= lowLength > 5 ? 20 : 10;
 
 	score = Math.max(score, 0);
-	let ratings = { score, rating: '', description: '' };
+	let ratings = { score, rating: 'A', description: 'Minimal Issues' };
 	const inLeftOpen = (x, min, max) => x >= min && x < max;
 
 	if (inLeftOpen(score, 90, 100)) {
