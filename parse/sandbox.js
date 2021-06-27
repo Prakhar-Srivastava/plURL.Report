@@ -100,7 +100,7 @@ function analyzeChanges(keys, data, isBrowser) {
 							remarks: [
 								'PATH Tampered',
 								'Unauthorised Install',
-								'Malacious Software'
+								'Malicious Software'
 							]
 						}
 					}
@@ -111,10 +111,10 @@ function analyzeChanges(keys, data, isBrowser) {
 						critical: {
 							reads_writes: data[key],
 							remarks: [
-								'Malacious files in critical directories',
+								'Malicious files in critical directories',
 								'Unauthorised Install',
 								'Unwanted Software',
-								'Malacious Software'
+								'Malicious Software'
 							]
 						}
 					}
@@ -127,7 +127,7 @@ function analyzeChanges(keys, data, isBrowser) {
 							remarks: [
 								'Unauthorised Install',
 								'Unwanted Software',
-								'Malacious Software'
+								'Malicious Software'
 							]
 						}
 					}
@@ -157,7 +157,7 @@ function analyzeChanges(keys, data, isBrowser) {
 					threats: {
 						high: {
 							windows_script_objects: data[key],
-							remarks: ['Malacious', 'Malware', 'Windows Script']
+							remarks: ['Malicious', 'Malware', 'Windows Script']
 						}
 					}
 				};
@@ -167,7 +167,7 @@ function analyzeChanges(keys, data, isBrowser) {
 						critical: {
 							payload_urls: data[key],
 							remarks: [
-								'Malacious',
+								'Malicious',
 								'Malware',
 								'Windows Script',
 								'Payload'
@@ -181,7 +181,7 @@ function analyzeChanges(keys, data, isBrowser) {
 						critical: {
 							wmi: data[key],
 							remarks: [
-								'Malacious',
+								'Malicious',
 								'Malware',
 								'Windows Script',
 								'Remote Execution',
