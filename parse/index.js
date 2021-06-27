@@ -53,10 +53,10 @@ function TI(parsed) {
 		ratings.description = 'Not Safe';
 	} else if (inLeftOpen(score, 50, 60)) {
 		ratings.rating = 'E';
-		ratings.description = 'Malacious';
+		ratings.description = 'Malicious';
 	} else if (inLeftOpen(score, -1, 50)) {
 		ratings.rating = 'F';
-		ratings.description = 'Malacious';
+		ratings.description = 'Malicious';
 	}
 
 	parsed.ratings = ratings;
