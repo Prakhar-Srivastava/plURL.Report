@@ -47,16 +47,16 @@ function TI(parsed) {
 		ratings.description = 'Data Risk';
 	} else if (inLeftOpen(score, 70, 80)) {
 		ratings.rating = 'C';
-		ratings.description = 'Several Vulnerabiities';
+		ratings.description = 'Several Vulnerabilities';
 	} else if (inLeftOpen(score, 60, 80)) {
 		ratings.rating = 'D';
 		ratings.description = 'Not Safe';
 	} else if (inLeftOpen(score, 50, 60)) {
 		ratings.rating = 'E';
-		ratings.description = 'Malacious';
+		ratings.description = 'Malicious';
 	} else if (inLeftOpen(score, -1, 50)) {
 		ratings.rating = 'F';
-		ratings.description = 'Malacious';
+		ratings.description = 'Malicious';
 	}
 
 	parsed.ratings = ratings;
