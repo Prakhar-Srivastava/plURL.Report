@@ -42,7 +42,7 @@ function stripParamerters(json, isBrowser = true) {
 
 function loadDefault(isBrowser = true) {
 	const defaultFile = `/defaults/${isBrowser ? 'chrome' : 'wscript'}.json`;
-	const json = require(relativePath(defaultFile));
+	const json = require('..' + defaultFile);
 
 	return Object.freeze(stripParamerters(json, isBrowser));
 }
