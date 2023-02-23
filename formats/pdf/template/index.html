@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{COMPANY}}&mdash;URL&nbsp;Report</title>
+	<style>
+		:root {
+			--my-var: #fff;
+		}
+
+		* {
+			/* outline: dashed blue 1.2pt !important; */
+		}
+
+		body {
+			width: 8.3in;
+			padding: 1in;
+			border: 1px solid red;
+			margin: auto;
+		}
+
+		section.page {
+			height: 11.7in;
+			width: 100%;
+			box-shadow: 0px 0px 3vw 0.3em #00000069;
+			border-radius: 5px;
+			overflow: hidden;
+		}
+
+		.frontPage .companyTextHero::before,
+		.frontPage .companyTextHero {
+			margin: auto;
+			margin-top: 1em;
+			text-transform: uppercase;
+			text-align: center;
+			font-family: sans-serif;
+			content: "commercial in confidence";
+			display: block;
+			font-size: medium;
+			color: black;
+		}
+
+		.frontPage .companyTextHero>span {
+			text-transform: none;
+			font-size: 90pt;
+			color: #00008b;
+			font-weight: 900;
+		}
+
+		.frontPage .companyTextHero::after {
+			content: ' ';
+			border-bottom: 10pt solid #00008b;
+			display: block;
+			height: 1em;
+			width: 12.5em;
+			margin: -2.1em 0 0 45%;
+		}
+
+		.rightAligned {
+			text-align: right;
+		}
+
+		figure.plurlLogo {
+			background-image: url('./images/image3.png');
+			height: 300px;
+			width: 300px;
+			float: right;
+			background-size: 100% auto;
+			background-repeat: no-repeat;
+			background-position: center center;
+			margin: 2em 0;
+			border-radius: 3.5em 10em;
+			border: solid 1pt #9c9c9c;
+		}
+	</style>
+</head>
+
+<body>
+	<section class="page frontPage">
+		<p class="companyTextHero">
+			<span>{{company}}</span>
+		</p>
+		<div class="rightAigned">
+			<figure class="plurlLogo"></figure>
+			<p class="url-scan-report">URL Scan Report</p>
+			<p class="company-name">{{company}}</p>
+			<p class="version">{{version}}</p>
+			<p class="page1-date">{{date}}</p>
+			<p class="report-number">{{reportId}}</p>
+		</div>
+
+		<hr />
+	</section>
+	{{test}}
+</body>
+
+</html>
